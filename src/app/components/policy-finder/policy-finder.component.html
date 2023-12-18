@@ -1,0 +1,47 @@
+<h1>Policy Finder</h1>
+
+<div>
+    <h3>Add Policy</h3>
+    <form (submit)="addPolicy()">
+        <input type="text" name="policyName" placeholder="Policy Name" [(ngModel)]="newPolicy.policyName">
+        <input type="text" name="policyDescription" placeholder="Policy Description"
+            [(ngModel)]="newPolicy.policyDescription">
+        <input type="number" name="policyAmount" placeholder="Policy Amount" [(ngModel)]="newPolicy.policyAmount">
+        <input type="text" name="policyType" placeholder="Policy Type" [(ngModel)]="newPolicy.policyType">
+        <button type="submit">Add Policy</button>
+    </form>
+</div>
+
+<div>
+    <h3>Search Policies</h3>
+    <input type="text" placeholder="Search Policies" [(ngModel)]="searchKeyword">
+</div>
+
+<div>
+    <h3>List of Policies</h3>
+    <ul>
+        <li *ngFor="let policy of filteredPolicies">
+            <div>
+                <h4>{{ policy.policyName }}</h4>
+                <p>Description: {{ policy.policyDescription }}</p>
+                <p>Amount: {{ policy.policyAmount }}</p>
+                <p>Type: {{ policy.policyType }}</p>
+                <button (click)="editPolicy(policy)">Edit</button>
+                <button (click)="deletePolicy(policy)">Delete</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="isEditing">
+    <h3>Edit Policy</h3>
+    <form (submit)="saveEditedPolicy()">
+        <input type="text" name="policyName" placeholder="Policy Name" [(ngModel)]="editedPolicy.policyName">
+        <input type="text" name="policyDescription" placeholder="Policy Description"
+            [(ngModel)]="editedPolicy.policyDescription">
+        <input type="number" name="policyAmount" placeholder="Policy Amount" [(ngModel)]="editedPolicy.policyAmount">
+        <input type="text" name="policyType" placeholder="Policy Type" [(ngModel)]="editedPolicy.policyType">
+        <button type="submit">Save</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+</div>
