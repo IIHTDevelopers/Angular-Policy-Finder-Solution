@@ -20,8 +20,6 @@ export class PolicyFinderComponent {
   isEditing = false;
   searchKeyword = '';
 
-  constructor() { }
-
   addPolicy(): void {
     this.newPolicy.id = this.policies.length + 1;
     this.policies.push({ ...this.newPolicy });
